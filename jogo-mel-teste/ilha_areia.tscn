@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://bhg4ea7jyu1yb"]
+
+[ext_resource type="Texture2D" uid="uid://b2m41teccfuws" path="res://icon.svg" id="1_8hav8"]
+[ext_resource type="Script" uid="uid://qwceo3encyq8" path="res://player.gd" id="2_1dwlj"]
+[ext_resource type="Texture2D" uid="uid://bqgnx11gm2usd" path="res://cachorro_spritesheet_32x32.png" id="3_8hav8"]
+[ext_resource type="Script" uid="uid://dyb1kn6je1h4q" path="res://barquinho.gd" id="4_px0gk"]
+[ext_resource type="Texture2D" uid="uid://dlhq4v80so1by" path="res://ilustração-de-um-barco-remos-madeira-visto-cima-472889016-removebg-preview.png" id="5_u38j2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dwlj"]
+atlas = ExtResource("3_8hav8")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_px0gk"]
+atlas = ExtResource("3_8hav8")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u38j2"]
+atlas = ExtResource("3_8hav8")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugjxg"]
+atlas = ExtResource("3_8hav8")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5u02"]
+atlas = ExtResource("3_8hav8")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yux6"]
+atlas = ExtResource("3_8hav8")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hav8"]
+atlas = ExtResource("3_8hav8")
+region = Rect2(0, 64, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0f5tp"]
+atlas = ExtResource("3_8hav8")
+region = Rect2(32, 64, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cudyw"]
+atlas = ExtResource("3_8hav8")
+region = Rect2(64, 64, 32, 31)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_riqys"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dwlj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_px0gk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u38j2")
+}],
+"loop": 1,
+"name": &"baixo",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugjxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5u02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yux6")
+}],
+"loop": 1,
+"name": &"cima",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hav8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0f5tp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cudyw")
+}],
+"loop": 0,
+"name": &"lado",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bhunq"]
+radius = 39.051247
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhunq"]
+size = Vector2(57, 132)
+
+[node name="ilha_areia" type="Node2D" unique_id=836605265]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=885665945]
+position = Vector2(591, 347.5)
+scale = Vector2(9.203125, 5.3671875)
+texture = ExtResource("1_8hav8")
+
+[node name="player" type="CharacterBody2D" parent="." unique_id=1781533496]
+texture_filter = 1
+position = Vector2(425, 608)
+script = ExtResource("2_1dwlj")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player" unique_id=886458809]
+position = Vector2(-3.5000296, -18.500002)
+scale = Vector2(3.2187493, 3.156251)
+sprite_frames = SubResource("SpriteFrames_riqys")
+animation = &"baixo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player" unique_id=212734249]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_bhunq")
+
+[node name="Camera2D" type="Camera2D" parent="player" unique_id=1037394205]
+
+[node name="barquinho" type="Area2D" parent="." unique_id=15630203]
+position = Vector2(288, 622)
+script = ExtResource("4_px0gk")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="barquinho" unique_id=1131363582]
+position = Vector2(1.9999695, -2)
+scale = Vector2(0.26031435, 0.27142859)
+texture = ExtResource("5_u38j2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barquinho" unique_id=98672155]
+position = Vector2(1.5, -1)
+shape = SubResource("RectangleShape2D_bhunq")
+
+[connection signal="body_entered" from="barquinho" to="barquinho" method="_on_body_entered"]

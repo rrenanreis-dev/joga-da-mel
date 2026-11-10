@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://dfsny2f1ioy6n"]
+
+[ext_resource type="Script" uid="uid://dak1j5jtn06xy" path="res://main_menu.gd" id="1_06t4h"]
+[ext_resource type="Texture2D" uid="uid://3x1it2xba17x" path="res://Mel_em_busca_de_tesouros (1).jpg" id="2_7vrkn"]
+
+[node name="Main Menu" type="Node2D" unique_id=393371320]
+script = ExtResource("1_06t4h")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=889209484]
+texture_filter = 1
+position = Vector2(577.75, 322)
+scale = Vector2(0.9138205, 0.7764423)
+texture = ExtResource("2_7vrkn")
+
+[node name="Buttin_manager" type="Control" parent="." unique_id=1416348996]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="start" type="Button" parent="Buttin_manager" unique_id=1833410482]
+layout_mode = 0
+offset_left = 839.0
+offset_top = 381.0
+offset_right = 999.0
+offset_bottom = 414.0
+text = "Start"
+
+[node name="Options" type="Button" parent="Buttin_manager" unique_id=1659060561]
+layout_mode = 0
+offset_left = 840.0
+offset_top = 433.0
+offset_right = 999.0
+offset_bottom = 464.0
+text = "Opitons"
+
+[node name="quit" type="Button" parent="Buttin_manager" unique_id=928072757]
+layout_mode = 0
+offset_left = 840.0
+offset_top = 484.0
+offset_right = 999.0
+offset_bottom = 515.0
+text = "quit"
+
+[connection signal="pressed" from="Buttin_manager/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Buttin_manager/quit" to="." method="_on_quit_pressed"]
